@@ -2,33 +2,32 @@
     require_once('./config/root.php');
     require_once('./config/User.php');
 
-
-    if($GLOBALS['isAuthenticated'] === true){
-    header("Location: ./index.php");
-}
-   $response = [];
-   $success = [];
-
+    
+   function tokenvalidation($fetchtoken)
+   {
+    $_POST[$fetchtoken] ??= '';
+    return htmlspecialchars(stripcslashes($_POST[$fetchtoken]));
+   };
    $data = [
-        $param = '',
-        $password = ''
+        $token = ''
    ];
-    function validatelogin($logindata)
-    {
-        $_POST['$logindata'] ??= '';
-        return htmlspecialchars(stripcslashes($_POST[$logindata]));
-    }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $data['param'] = validatelogin('param');
-        $data['password'] = validatelogin('password');
-        $response = User::login($data);
-        if ($response['status'] === false) {
+   $tokenValidate = [];
 
-        }elseif($response['status'] === true){
-            $_SESSION['isAuth'] = $response;
-            header("Location: index.php");
+
+   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+       $data['token'] = tokenvalidation('tokens');
+       $tokenValidate = User::tokenvalidation($_POST);
+
+       if ($tokenValidate['status'] === true) {
+        try {
+            $_SESSION['token'] = $data['token'];
+        header("Location: ./newpassword.php");
+
+        } catch (Exception $e) {
+            echo "pls connent to the internet";
         }
-    }
+       }
+}
 ?>
 
 
@@ -73,14 +72,7 @@
 </head>
 
 <body>
-    <div id="ec-overlay"><span class="loader_img"></span></div>
-
-    <?php require_once('./_inc/header.php') ?>
-
-    <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
-    <?php require_once("./_inc/sideCart.php") ?>
-    <!-- ekka Cart End -->
+   
 
      <!-- Ec breadcrumb start -->
      <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -89,13 +81,13 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Login</h2>
+                            <h2 class="ec-breadcrumb-title">Step -2- token verification</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="<?php ROOT ?> index.php">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Login</li>
+                                <li class="ec-breadcrumb-item"><a href="<?php ROOT ?> ./password_recovery.php">Password Recovery</a></li>
+                                <li class="ec-breadcrumb-item active">Token input</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -110,41 +102,22 @@
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title">
-                        <h2 class="ec-bg-title">Log In</h2>
-                        <h2 class="ec-title">Log In</h2>
-                        <p class="sub-title mb-3">Best place to buy and sell digital products</p>
-                    </div>
-                </div>
                 <div class="ec-login-wrapper">
                     <div class="ec-login-container">
                         <div class="ec-login-form">
                             <form action="" method="post">
                                 <span class="ec-login-wrap margin_bottom">
-                                    <label>Email Address*</label>
-                                    <input type="text" name="param" placeholder="Enter your email add..." required class="<?php echo isset( $response['user']) ? 'is-valid' : '' ?> <?php echo isset( $response['message']) ? 'is-invalid' : '' ?>" value="<?php echo $data['param'] ?? ''?>">
+                                    <label>Token*</label>
+                                    <input type="text" name="tokens" placeholder="Enter token" required class="<?php echo isset( $tokenValidate['message']) ? 'is-valid' : '' ?> <?php echo isset( $tokenValidate['message']) ? 'is-invalid' : '' ?>" >
                                     <div class="invalid-feedback small">
                                             <div class="small text-danger">
-                                                <?php echo $response['message'] ?? '' ?>
+                                                <?php echo $tokenValidate['message'] ?? '' ?>
                                             </div>
                                     </div>
                                 </span>
-                                <span class="ec-login-wrap margin_bottom">
-                                    <label>Password*</label>
-                                    <input type="password" name="password" placeholder="Enter your password" required  class="<?php echo isset( $response['user']) ? 'is-valid' : '' ?> <?php echo isset( $response['messages']) ? 'is-invalid' : '' ?>" >
-                                    <div class="invalid-feedback small">
-                                            <div class="small text-danger">
-                                                <?php echo $response['messages'] ?? '' ?>
-                                            </div>
-                                    </div>
-                                </span>
-                                <span class="ec-login-wrap ec-login-fp">
-                                    <label><a href="<?php ROOT ?>./password_recovery.php">Forgot Password?</a></label>
-                                </span>
+                                
                                 <span class="ec-login-wrap ec-login-btn">
-                                    <button class="btn btn-primary" type="submit">Login</button>
-                                    <a href="create-account.php" class="btn btn-secondary">Register</a>
+                                    <button class="btn btn-primary" type="submit">Verify Token</button>
                                 </span>
                             </form>
                         </div>

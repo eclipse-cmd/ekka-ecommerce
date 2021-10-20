@@ -1,6 +1,7 @@
 <?php
-    require_once('./config/root.php')
+    require_once('./config/root.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

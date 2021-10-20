@@ -2658,9 +2658,11 @@
 
   .ec-register-wrapper .ec-register-container .ec-register-form .ec-register-wrap.ec-register-half {
     width: 100%;
+    margin-bottom: 15px;
+    
   }
   .ec-register-wrapper .ec-register-container .ec-register-form input {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
   }
   .ec-register-wrapper .ec-register-container .ec-register-form .ec-register-wrap.ec-recaptcha {
     overflow: hidden;

@@ -146,6 +146,11 @@
   font-style: normal;
 }
 /*-------------------------------------------------
+  rebranded Class
+---------------------------------------------------*/
+
+
+/*-------------------------------------------------
   Helper Class
 ---------------------------------------------------*/
 *,
@@ -21576,9 +21581,13 @@ select::-ms-expand {
 /*-------------------------------------------------
   Login Page CSS
 ---------------------------------------------------*/
+.margin_bottom{
+  margin-bottom: 27px;
+}
 .ec-login-wrapper {
   max-width: 530px;
   margin: 0 auto 0;
+
 }
 .ec-login-wrapper .ec-login-container {
   border: 1px solid #ededed;
@@ -21608,7 +21617,6 @@ select::-ms-expand {
   border: 1px solid #eeeeee;
   color: #777;
   font-size: 14px;
-  margin-bottom: 27px;
   padding: 0 15px;
   width: 100%;
   outline: none;
@@ -21679,6 +21687,8 @@ select::-ms-expand {
 }
 .ec-register-wrapper .ec-register-container .ec-register-form .ec-register-wrap.ec-register-half {
   width: 50%;
+  margin-bottom: 26px;
+  /**/
 }
 .ec-register-wrapper .ec-register-container .ec-register-form form {
   display: -webkit-box;
@@ -21703,7 +21713,6 @@ select::-ms-expand {
   border: 1px solid #ededed;
   color: #777;
   font-size: 14px;
-  margin-bottom: 26px;
   padding: 0 15px;
   width: 100%;
   outline: none;
@@ -21745,11 +21754,20 @@ select::-ms-expand {
   padding: 0;
   margin-bottom: 27px;
 }
-.ec-register-wrapper .ec-register-container .ec-register-form .ec-rg-select-inner select {
-  padding: 0 15px;
+.ec-register-wrapper .ec-register-container .ec-register-form .ec-rg-select-inner textarea {
+    background-color: transparent;
+    border: 0px solid #ededed;
+    color: #777;
+    font-size: 14px;
+    padding: 0 15px;
+    width: 100%;
+    outline: none;
+    resize: none;
+    line-height: 48px;
+    height: 50px;
 }
 .ec-register-wrapper .ec-register-container .ec-register-form .ec-rg-select-inner::after {
-  content: "";
+ /* content: "";
   position: absolute;
   font-family: "EcIcons";
   top: 0;
@@ -21769,7 +21787,7 @@ select::-ms-expand {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #777777;
+  color: #777777;*/
 }
 .ec-register-wrapper .ec-register-container .ec-register-form .ec-register-wrap.ec-recaptcha {
   display: -webkit-box;
@@ -21991,7 +22009,7 @@ select::-ms-expand {
   padding: 0;
   margin-bottom: 27px;
 }
-.ec-contact-container .ec-contact-form .ec-rg-select-inner select {
+.ec-contact-container .ec-contact-form .ec-rg-select-inner textarea {
   padding: 0 15px;
 }
 .ec-contact-container .ec-contact-form .ec-rg-select-inner::after {

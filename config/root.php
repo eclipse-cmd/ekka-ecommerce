@@ -1,6 +1,6 @@
 <?php
 session_start();
-define('ROOT', '/ekka');
+define('ROOT', '/ekka-ecommerce');
 define('HOST', 'localhost');
 define('DBUSER', 'root');
 define('DBPASS', '');

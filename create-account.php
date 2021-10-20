@@ -1,5 +1,93 @@
 <?php
+    require_once('./config/root.php');
+    require_once('./config/User.php');
 
+     $isAuth = $GLOBALS['isAuthenticated'];
+
+    if($isAuth === true){
+    header("Location: ./index.php");
+    }
+    
+    // sign up validation
+
+    $errors = [];
+    define('ERROR_MSG', 'This field is required');
+
+    function validateData($fetchdata)
+    {
+        $_POST['$fetchdata'] ??= '';
+        return htmlspecialchars(stripcslashes($_POST[$fetchdata]));
+    }
+
+    $data = [
+        $first_name = '',
+        $last_name = '',
+        $email = '',
+        $phone_number = '',        
+        $password = '',
+        $password_confirmnation = ''
+        // $city = '',
+        // $country = '',
+    ];
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $data["first_name"] = validateData('firstname');
+      $data["last_name"] = validateData('lastname');
+      $data["email"] = validateData('email');
+      $data["phone_number"] = validateData('phonenumber');
+      $data["password"] = validateData('password');
+      $data["password_confirmnation"] = validateData('password_confirmnation');
+      // $data["city"] = validateData('city');
+      // $data["country"] = validateData('ec_select_country');
+  
+
+    if (!$data['first_name']) {
+        $errors['firstname'] = ERROR_MSG;
+    }
+    if (!$data['last_name']) {
+        $errors['lastname'] = ERROR_MSG;
+    }
+    if (!$data['email']) {
+        $errors['email'] = ERROR_MSG;
+    }elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = ucfirst("this email is invalid");
+    }
+    if (!$data['phone_number']) {
+        $errors['phonenumber'] = ERROR_MSG;
+    }
+    if (strlen($data['password']) < 5)  {
+        $errors['password'] = ucfirst('password is too short');
+    }
+    if (!$data['password']) {
+        $errors['password'] = ERROR_MSG;
+    }
+    if (!$data['password_confirmnation']) {
+        $errors['password_confirmnation'] = ERROR_MSG;
+    }
+    if ($data['password'] !== $data['password_confirmnation']) {
+        $errors['password_confirmnation'] = ucfirst('password does not match');
+    }
+   
+   // print_r(count($errors));
+   //  exit();
+  if (count($errors) < 1) {
+      $response = User::sign_up($data);
+      if ($response['success'] === false) {
+          $error = explode('1062', $response['error'])[1];
+          if(strpos($error, 'email') !== false){
+               $errors['email'] = $error; 
+            } 
+            if(strpos($error, 'phone_number') !== false){
+                $errors['phonenumber'] = $error;
+            }
+           //   var_dump(explode('1062', $response['error'])) ;
+           // $errors['database_error'] = explode('1062', $response['error'])[1];
+      }
+      // print_r($response);
+      
+  }
+}
 ?>
 
 
@@ -90,39 +178,77 @@
                 <div class="ec-register-wrapper">
                     <div class="ec-register-container">
                         <div class="ec-register-form">
-                            <form action="#" method="post">
+                            <form action="" method="post">
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>First Name*</label>
-                                    <input type="text" name="firstname" placeholder="Enter your first name" required />
+                                    <input type="text" name="firstname" value="<?php echo $data['first_name'] ?? ''?>" placeholder="Enter your first name" class=" <?php echo isset( $errors['firstname']) ? 'is-invalid' : '' ?>" >
+                                    <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['firstname'] ?? '' ?>
+                                            </div>
+                                    </div>
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Last Name*</label>
-                                    <input type="text" name="lastname" placeholder="Enter your last name" required />
+                                    <input type="text" name="lastname" placeholder="Enter your last name" value="<?php echo $data['last_name'] ?? '' ?>" class=" <?php echo isset( $errors['lastname']) ? 'is-invalid' : '' ?>" >
+                                    <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['lastname'] ?? '' ?>
+                                            </div>
+                                    </div>
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Email*</label>
-                                    <input type="email" name="email" placeholder="Enter your email add..." required />
+                                    <input type="email" name="email" placeholder="Enter your email add..." value="<?php echo $data['email'] ?? ''?>" class=" <?php echo isset( $errors['email']) ? 'is-invalid' : '' ?>" >
+                                    <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['email'] ?? '' ?>
+                                            </div>
+                                    </div>
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Phone Number*</label>
-                                    <input type="text" name="phonenumber" placeholder="Enter your phone number"
-                                        required />
+                                    <input type="text" name="phonenumber" placeholder="Enter your phone number" value="<?php echo $data['phone_number'] ?? ''?>" class="<?php echo isset( $errors['phonenumber']) ? 'is-invalid' : '' ?>" >
+                                    <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['phonenumber'] ?? '' ?>
+                                            </div>
+                                    </div>
                                 </span>
-                                <span class="ec-register-wrap">
+                                <span class="ec-register-wrap ec-register-half">
+                                    <label>Password*</label>
+                                    <input type="password"  name="password"  class=" <?php echo isset( $errors['password']) ? 'is-invalid' : '' ?>" >
+                                    <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['password'] ?? '' ?>
+                                            </div>
+                                    </div>
+                                </span>
+                                 <span class="ec-register-wrap ec-register-half">
+                                    <label>Confirm Password*</label>
+                                    <input type="password" name="password_confirmnation" class=" <?php echo isset( $errors['password_confirmnation']) ? 'is-invalid' : '' ?>"  >
+                                    <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['password_confirmnation'] ?? '' ?>
+                                            </div>
+                                    </div>
+                                </span>
+                                <span class="ec-register-wrap ec-register-half">
                                     <label>Address</label>
                                     <input type="text" name="address" placeholder="Address Line 1" />
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>City *</label>
                                     <span class="ec-rg-select-inner">
-                                        <select name="ec_select_city" id="ec-select-city" class="ec-register-select">
+                                      <!--   <select name="ec_select_city" id="ec-select-city" class="ec-register-select">
                                             <option selected disabled>City</option>
                                             <option value="1">City 1</option>
                                             <option value="2">City 2</option>
                                             <option value="3">City 3</option>
                                             <option value="4">City 4</option>
                                             <option value="5">City 5</option>
-                                        </select>
+                                        </select> -->
+                                        <textarea class="ec-register-select"></textarea>
                                     </span>
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
@@ -132,38 +258,45 @@
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Country *</label>
                                     <span class="ec-rg-select-inner">
-                                        <select name="ec_select_country" id="ec-select-country"
-                                            class="ec-register-select">
+                                        <!-- <select name="ec_select_country[]" id="ec-select-country" class="ec-register-select">
                                             <option selected disabled>Country</option>
-                                            <option value="1">Country 1</option>
-                                            <option value="2">Country 2</option>
-                                            <option value="3">Country 3</option>
-                                            <option value="4">Country 4</option>
-                                            <option value="5">Country 5</option>
-                                        </select>
+                                            <option value="1">NIGERIA</option>
+                                            <option value="2">USA</option>
+                                            <option value="3">ENGLAND</option>
+                                            <option value="4">CANADA</option>
+                                            <option value="5">JAPAN</option>
+                                        </select> -->
+                                        <textarea class="ec-register-select"></textarea>
+                                         <div class="invalid-feedback small">
+                                            <div class="small text-danger">
+                                                <?php echo $errors['ec_select_country'] ?? '' ?>
+                                            </div>
+                                    </div>
                                     </span>
                                 </span>
-                                <span class="ec-register-wrap ec-register-half">
+                                <span class="ec-register-wrap">
                                     <label>Region State</label>
                                     <span class="ec-rg-select-inner">
-                                        <select name="ec_select_state" id="ec-select-state" class="ec-register-select">
+                                       <!--  <select name="ec_select_state" id="ec-select-state" class="ec-register-select">
                                             <option selected disabled>Region/State</option>
                                             <option value="1">Region/State 1</option>
                                             <option value="2">Region/State 2</option>
                                             <option value="3">Region/State 3</option>
                                             <option value="4">Region/State 4</option>
                                             <option value="5">Region/State 5</option>
-                                        </select>
+                                        </select> -->
+                                        <textarea class="ec-register-select"></textarea>
+
                                     </span>
                                 </span>
-                                <span class="ec-register-wrap ec-recaptcha">
+                               <!--  <span class="ec-register-wrap ec-recaptcha">
                                     <span class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"
                                         data-callback="verifyRecaptchaCallback"
                                         data-expired-callback="expiredRecaptchaCallback"></span>
                                     <input class="form-control d-none" data-recaptcha="true" required
                                         data-error="Please complete the Captcha">
                                     <span class="help-block with-errors"></span>
-                                </span>
+                                </span> -->
                                 <span class="ec-register-wrap ec-register-btn">
                                     <button class="btn btn-primary" type="submit">Register</button>
                                 </span>

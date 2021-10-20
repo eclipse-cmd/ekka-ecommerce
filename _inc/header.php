@@ -1,3 +1,8 @@
+<?php
+    require_once('./config/root.php');
+    require_once('./config/User.php');
+?>
+
 <header class="ec-header">
     <!--Ec Header Top Start -->
     <div class="header-top">
@@ -52,9 +57,14 @@
                             <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                     src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                  <?php if($GLOBALS['isAuthenticated'] === true): ?>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./checkout.php">Checkout</a></li>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./logout.php">Log out</a></li>
+                                    
+                                    <?php else: ?>
+                                       <li><a class="dropdown-item" href="<?php ROOT ?> ./create-account.php">Register</a></li>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./login.php">log in</a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                         <!-- Header User End -->
@@ -120,9 +130,16 @@
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                         src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" href="create-account.php">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout.php">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login.php">Login</a></li>
+                                    
+                                         <?php if($GLOBALS['isAuthenticated'] === true): ?>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./checkout.php">Checkout</a></li>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./logout.php">log out</a></li>
+                                    
+                                            <?php else: ?>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./create-account.php">Register</a></li>
+                                        <li><a class="dropdown-item" href="<?php ROOT ?> ./login.php">log in</a></li>
+                                            <?php endif; ?>
+                        
                                 </ul>
                             </div>
                             <!-- Header User End -->

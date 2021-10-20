@@ -1,5 +1,7 @@
 <?php
-    require_once('./config/root.php')
+    require_once('./config/root.php');
+$isAuth = $GLOBALS['isAuthenticated'];
+
 ?>
 
 

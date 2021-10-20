@@ -4,11 +4,11 @@ class User
 {
     public static function sign_up($data)
     {
-        $recovery_token = substr(str_shuffle('1234567890ASDFGHJKLPOIUYTREWQasdfghjklpoiuytreww'),0,5);
+        $recovery_token = substr(str_shuffle('1234567890ASDFGHJKLPOIUYTREWQasdfghjklpoiuytreww'), 0,5);
         $hash_password = password_hash($data["password"], PASSWORD_DEFAULT);
-        $statement = $GLOBALS['dbh']->prepare("INSERT INTO user (firstname, lastname, gmail, username, password, remember_token) VALUES(?, ?, ?, ?, ?, ?)");
+     $statement = $GLOBALS['dbh']->prepare("INSERT INTO user (firstname, lastname, gmail, phone_number, password, remember_token) VALUES(?, ?, ?, ?, ?, ?)");
         try {
-            $statement->execute([$data["first_name"], $data["last_name"], $data['email'], $data["username"],  $hash_password,  $recovery_token]);
+            $statement->execute([$data["first_name"], $data["last_name"], $data['email'], $data['phone_number'], $hash_password , $recovery_token]);
             $registration_success =  [
                 "success" => true,
                 "message" => "Registration successful, please log in",
@@ -26,7 +26,7 @@ class User
 
     public static function login($data)
     {
-        $stm = $GLOBALS['dbh']->prepare('SELECT * FROM user WHERE gmail = ? OR username =?');
+        $stm = $GLOBALS['dbh']->prepare('SELECT * FROM user WHERE gmail = ? OR phone_number = ?');
         try {
             $stm->execute([$data['param'], $data['param']]);
             if ($stm->rowCount() !== 1) {
@@ -86,9 +86,11 @@ class User
 
      public static function tokenvalidation($token)
     {
+        // $recovery_token = substr(str_shuffle('1234567890ASDFGHJKLPOIUYTREWQasdfghjklpoiuytreww'), 0,5);
+        
         $stm = $GLOBALS['dbh']->prepare('SELECT * FROM user WHERE remember_token = ?');
         try{
-          $stm->execute([$token['token']]);
+          $stm->execute([$token['tokens'],]);
             if ($stm->rowCount() !== 1) {
                  return [
                     "status" => false,
@@ -107,11 +109,12 @@ class User
             ];
         };
     }
-    public static function NewPasswords($passwordReset){
+    public static function NewPasswords($passwordReset)
+    {
         
         $stm = $GLOBALS['dbh']->prepare('SELECT * FROM user WHERE password = ?');
         try {
-            $stm->execute([$passwordReset['NewPassword']]);
+            $stm->execute([$passwordReset['password']]);
             if ($stm->rowCount() !== 1) {
                 return [
                     'status' => false,

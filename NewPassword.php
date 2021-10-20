@@ -2,33 +2,75 @@
     require_once('./config/root.php');
     require_once('./config/User.php');
 
+    
+   function NewPassword($passwordReset)
+   {
+    $_POST[$passwordReset] ??= '';
+    return htmlspecialchars(stripcslashes($_POST[$passwordReset]));
+   };
 
-    if($GLOBALS['isAuthenticated'] === true){
-    header("Location: ./index.php");
-}
-   $response = [];
-   $success = [];
+   define('ERROR_MSG', ucwords('this field is required'));
+   $errors = [];
+ $response = [
+                'status' => null,
+                'data' => [
+                    'message' => ''
+                ]
+];
+
 
    $data = [
-        $param = '',
-        $password = ''
+        $password = '',
+        $password_confirmnation = ''
    ];
-    function validatelogin($logindata)
-    {
-        $_POST['$logindata'] ??= '';
-        return htmlspecialchars(stripcslashes($_POST[$logindata]));
-    }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $data['param'] = validatelogin('param');
-        $data['password'] = validatelogin('password');
-        $response = User::login($data);
-        if ($response['status'] === false) {
 
-        }elseif($response['status'] === true){
-            $_SESSION['isAuth'] = $response;
-            header("Location: index.php");
-        }
-    }
+$tokenValidate = null;
+
+if ($_SESSION['token']) {
+    $tokenValidate = $_SESSION['token'];
+   
+}else{
+    header("Location: ./tokeninput.php");
+}
+
+   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+       $data['password'] = NewPassword('password');
+       $data['password_confirmation'] = NewPassword('confirm_password');
+      
+        if (strlen($data['password'] < 5)) {
+           $errors['password'] = ucwords('password is too short');
+       }
+       if (!$data['password']) {
+           $errors['password'] = ERROR_MSG;
+       }
+      if (!$data['password_confirmation']) {
+           $errors['confirm_password'] = ERROR_MSG;
+       }
+       if ($data['password'] !== $data['password_confirmation']) {
+           $errors['confirm_password'] = ucwords('password does not match');
+       }
+       $hash_password = password_hash($data['password'], PASSWORD_DEFAULT);
+       if (count($errors) < 1) {
+                $stm = $GLOBALS['dbh']->prepare('UPDATE user SET password = ? WHERE remember_token = ?');
+                try {
+                    $stm->execute([$hash_password, $tokenValidate]);
+                    $stm2 = $GLOBALS['dbh']->prepare('UPDATE user SET remember_token = ? WHERE remember_token = ?');
+                    // $stm2->execute([substr(str_shuffle('1234567890ASDFGHJKLPOIUYTREWQasdfghjklpoiuytreww'), 0,5), $tokenValidate]);
+                    $stm2->execute([substr(str_shuffle('1234567890'),0,5), $tokenValidate]);
+
+                    $response = [
+                        'statu' => true,
+                        'data' => [
+                            'message' => 'password has been reset'
+                        ]
+                    ];
+                    header("Location: login.php");
+                } catch (Exception $e) {
+                    $errors[] = $e->getmessage();
+                }
+       }    
+      
+}
 ?>
 
 
@@ -73,14 +115,7 @@
 </head>
 
 <body>
-    <div id="ec-overlay"><span class="loader_img"></span></div>
-
-    <?php require_once('./_inc/header.php') ?>
-
-    <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
-    <?php require_once("./_inc/sideCart.php") ?>
-    <!-- ekka Cart End -->
+   
 
      <!-- Ec breadcrumb start -->
      <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -89,13 +124,13 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Login</h2>
+                            <h2 class="ec-breadcrumb-title">Step -3- New Password </h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="<?php ROOT ?> index.php">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Login</li>
+                                <li class="ec-breadcrumb-item"><a href="<?php ROOT ?> ./tokeninput.php">Token input</a></li>
+                                <li class="ec-breadcrumb-item active">create new password</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -110,41 +145,30 @@
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title">
-                        <h2 class="ec-bg-title">Log In</h2>
-                        <h2 class="ec-title">Log In</h2>
-                        <p class="sub-title mb-3">Best place to buy and sell digital products</p>
-                    </div>
-                </div>
                 <div class="ec-login-wrapper">
                     <div class="ec-login-container">
                         <div class="ec-login-form">
                             <form action="" method="post">
                                 <span class="ec-login-wrap margin_bottom">
-                                    <label>Email Address*</label>
-                                    <input type="text" name="param" placeholder="Enter your email add..." required class="<?php echo isset( $response['user']) ? 'is-valid' : '' ?> <?php echo isset( $response['message']) ? 'is-invalid' : '' ?>" value="<?php echo $data['param'] ?? ''?>">
+                                    <label>New password*</label>
+                                    <input type="password" name="password" placeholder="Enter New Password" value= "<?php echo $data['password'] ?? ''?>"  class="<?php echo isset( $errors['password']) ? 'is-invalid' : '' ?>" >
                                     <div class="invalid-feedback small">
                                             <div class="small text-danger">
-                                                <?php echo $response['message'] ?? '' ?>
+                                                <?php echo $errors['password'] ?? '' ?>
                                             </div>
                                     </div>
                                 </span>
-                                <span class="ec-login-wrap margin_bottom">
-                                    <label>Password*</label>
-                                    <input type="password" name="password" placeholder="Enter your password" required  class="<?php echo isset( $response['user']) ? 'is-valid' : '' ?> <?php echo isset( $response['messages']) ? 'is-invalid' : '' ?>" >
+                                 <span class="ec-login-wrap margin_bottom">
+                                    <label>confirm New password*</label>
+                                    <input type="password" name="confirm_password" value= "<?php echo $data['confirm_password'] ?? ''?>" placeholder="confirm new password"  class=" mb-0 <?php echo isset( $tokenValidate['message']) ? 'is-valid' : '' ?> <?php echo isset( $errors['confirm_password']) ? 'is-invalid' : '' ?>" >
                                     <div class="invalid-feedback small">
                                             <div class="small text-danger">
-                                                <?php echo $response['messages'] ?? '' ?>
+                                                <?php echo $errors['confirm_password'] ?? '' ?>
                                             </div>
                                     </div>
                                 </span>
-                                <span class="ec-login-wrap ec-login-fp">
-                                    <label><a href="<?php ROOT ?>./password_recovery.php">Forgot Password?</a></label>
-                                </span>
-                                <span class="ec-login-wrap ec-login-btn">
-                                    <button class="btn btn-primary" type="submit">Login</button>
-                                    <a href="create-account.php" class="btn btn-secondary">Register</a>
+                                <span class="ec-login-wrap ec-login-btn small">
+                                    <button class="btn btn-primary " type="submit">create password</button>
                                 </span>
                             </form>
                         </div>
