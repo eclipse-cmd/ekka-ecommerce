@@ -1,7 +1,15 @@
 <?php
     require_once('./config/root.php');
-$isAuth = $GLOBALS['isAuthenticated'];
+    require_once('./config/Product.php');
+    $isAuth = $GLOBALS['isAuthenticated'];
 
+    $products = Product::getProducts();
+    if($products['status'] === true){
+        $products = $products['data'];
+    }
+
+//    print_e($products) ;
+//    exit();
 ?>
 
 
@@ -41,6 +49,7 @@ $isAuth = $GLOBALS['isAuthenticated'];
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
 </head>
+
 <body>
     <div id="ec-overlay"><span class="loader_img"></span></div>
 

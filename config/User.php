@@ -6,7 +6,7 @@ class User
     {
         $recovery_token = substr(str_shuffle('1234567890ASDFGHJKLPOIUYTREWQasdfghjklpoiuytreww'), 0,5);
         $hash_password = password_hash($data["password"], PASSWORD_DEFAULT);
-     $statement = $GLOBALS['dbh']->prepare("INSERT INTO user (firstname, lastname, gmail, phone_number, password, remember_token) VALUES(?, ?, ?, ?, ?, ?)");
+        $statement = $GLOBALS['dbh']->prepare("INSERT INTO user (firstname, lastname, gmail, phone_number, password, remember_token) VALUES(?, ?, ?, ?, ?, ?)");
         try {
             $statement->execute([$data["first_name"], $data["last_name"], $data['email'], $data['phone_number'], $hash_password , $recovery_token]);
             $registration_success =  [
