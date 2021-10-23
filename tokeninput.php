@@ -21,7 +21,7 @@
        if ($tokenValidate['status'] === true) {
         try {
             $_SESSION['token'] = $data['token'];
-        header("Location: ./newpassword.php");
+        header("Location: ./new-password.php");
 
         } catch (Exception $e) {
             echo "pls connent to the internet";
@@ -149,7 +149,7 @@
                             class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
+                    <a href="<?php ROOT ?>./login.php" class="ec-header-btn"><img src="assets/images/icons/user.svg"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
             </div>

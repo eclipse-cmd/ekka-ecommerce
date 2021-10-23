@@ -2,7 +2,9 @@
     require_once('./config/root.php');
     require_once('./config/Product.php');
     $isAuth = $GLOBALS['isAuthenticated'];
-
+    if ($isAuth !== true) {
+        header("Location: ./login.php");
+    }
     $products = Product::getProducts();
     if($products['status'] === true){
         $products = $products['data'];
@@ -2621,15 +2623,15 @@
                             class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
+                    <a href="<?php ROOT ?> index.php" class="ec-header-btn"><img src="assets/images/icons/home.svg"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
+                    <a href="#" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
                             class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
+                    <a href="<?php ROOT ?>./login.php" class="ec-header-btn"><img src="assets/images/icons/user.svg"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
 

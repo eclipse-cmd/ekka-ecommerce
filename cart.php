@@ -1,5 +1,11 @@
 <?php
+require_once('./config/root.php');
 
+$isAuth = $GLOBALS['isAuthenticated'];
+
+if ($isAuth !== true) {
+	header("Location: ./login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -623,7 +629,7 @@
                             class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
+                    <a href="<?php ROOT ?>./login.php" class="ec-header-btn"><img src="assets/images/icons/user.svg"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
 
