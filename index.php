@@ -139,7 +139,9 @@ if ($products['status'] === true) {
                                                     </div>
                                                 </div>
                                                 <div class="ec-pro-content">
-                                                    <h5 class="ec-pro-title" style="text-transform: capitalize;"><a href="product-shop.php"><?php echo $product['name'] ?></a></h5>
+                                                    <h5 class="ec-pro-title" style="text-transform: capitalize;">
+                                                        <a href="<?php echo ROOT ?>/product/<?php echo $product['id'] ?>/<?php echo join("-", explode(" ", strtolower($product['name']))) ?>"><?php echo $product['name'] ?></a>
+                                                    </h5>
                                                     <div class="ec-pro-rating">
                                                         <?php for ($i = 0; $i < $product['rating']; $i++) : ?>
                                                             <i class="ecicon eci-star fill"></i>

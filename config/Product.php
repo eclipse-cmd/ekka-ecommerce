@@ -27,4 +27,30 @@ class Product
             ];
         }
     }
+
+    public static function getProduct($id)
+    {
+        $statement = $GLOBALS['dbh']->prepare("SELECT * FROM product WHERE id = ?");
+        try {
+            $statement->execute([$id]);
+            if ($statement->rowCount() > 0) {
+                $product = $statement->fetch();
+
+                return [
+                    "status" => true,
+                    "data" => $product
+                ];
+            } else {
+                return [
+                    "status" => false,
+                    "message" => "Product not found"
+                ];
+            };
+        } catch (PDOException $e) {
+            return [
+                'success' => false,
+                'error' => $e->getmessage()
+            ];
+        }
+    }
 }

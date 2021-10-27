@@ -1,40 +1,32 @@
 <?php
 require_once('./config/root.php');
 require_once('./config/Product.php');
-$isAuth = $GLOBALS['isAuthenticated'];
-if ($isAuth !== true) {
-    header("Location: ./login.php");
+
+$prouduct_id = $_GET['id'];
+if (!$prouduct_id) {
+    header("Location: index");
 }
-$products = Product::getProducts();
-if ($products['status'] === true) {
-    $products = $products['data'];
-}
+$product = Product::getProduct($prouduct_id);
+
 ?>
 
- <!DOCTYPE html>
- <html lang="en">
- 
- 
-<!-- Mirrored from loopinfosol.in/themeforest/ekka-html/ekka-html/product-left-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Oct 2021 22:34:39 GMT -->
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <?php require_once("./_inc/header-login.php") ?>
-    
+
 </head>
+
 <body class="product_page">
     <div id="ec-overlay"><span class="loader_img"></span></div>
 
-    <!-- Header start  -->
-       <?php require_once('./_inc/header.php') ?>
+    <?php require_once('./_inc/header.php') ?>
 
-    <!-- Header End  -->
 
-    <!-- ekka Cart Start -->
     <div class="ec-side-cart-overlay"></div>
-        <?php require_once("./_inc/sideCart.php") ?>
+    <?php require_once("./_inc/sideCart.php") ?>
 
-    <!-- ekka Cart End -->
-
-    <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
@@ -49,14 +41,12 @@ if ($products['status'] === true) {
                                 <li class="ec-breadcrumb-item"><a href="<?php ROOT ?> index.php">Home</a></li>
                                 <li class="ec-breadcrumb-item active">Products</li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Ec breadcrumb end -->
 
     <!-- Sart Single product -->
     <section class="ec-page-content section-space-p">
@@ -72,46 +62,36 @@ if ($products['status'] === true) {
                                     <div class="single-product-scroll">
                                         <div class="single-product-cover">
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-image/9_1.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_1.jpg" alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-image/9_2.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_2.jpg" alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-image/9_3.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-image/9_4.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-image/9_3.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="single-nav-thumb">
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-image/9_1.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_1.jpg" alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-image/9_2.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_2.jpg" alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-image/9_3.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-image/9_4.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-image/9_3.jpg"
-                                                    alt="">
+                                                <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -145,8 +125,7 @@ if ($products['status'] === true) {
                                                     <span class="ec-single-progressbar"></span>
                                                 </div>
                                                 <div class="ec-single-sales-countdown">
-                                                    <div class="ec-single-countdown"><span
-                                                            id="ec-single-countdown"></span></div>
+                                                    <div class="ec-single-countdown"><span id="ec-single-countdown"></span></div>
                                                     <div class="ec-single-count-desc">Time is Running Out!</div>
                                                 </div>
                                             </div>
@@ -178,8 +157,7 @@ if ($products['status'] === true) {
                                                 <span>Color</span>
                                                 <div class="ec-pro-variation-content">
                                                     <ul>
-                                                        <li class="active"><span
-                                                                style="background-color:#1b4a87"></span></li>
+                                                        <li class="active"><span style="background-color:#1b4a87"></span></li>
                                                         <li><span style="background-color:#5f94d6"></span></li>
                                                         <li><span style="background-color:#72aea2"></span></li>
                                                         <li><span style="background-color:#c79782"></span></li>
@@ -195,34 +173,21 @@ if ($products['status'] === true) {
                                                 <button class="btn btn-primary">Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
-                                                <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                        src="assets/images/icons/wishlist.svg" class="svg_img pro_svg"
-                                                        alt="" /></a>
+                                                <a class="ec-btn-group wishlist" title="Wishlist"><img src="<?php echo ROOT ?>/assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                             </div>
                                             <div class="ec-single-quickview">
-                                                <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#ec_quickview_modal"><img
-                                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                                        alt="" /></a>
+                                                <a href="#" class="ec-btn-group quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="<?php echo ROOT ?>/assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                             </div>
                                         </div>
                                         <div class="ec-single-social">
                                             <ul class="mb-0">
-                                                <li class="list-inline-item facebook"><a href="#"><i
-                                                            class="ecicon eci-facebook"></i></a></li>
-                                                <li class="list-inline-item twitter"><a href="#"><i
-                                                            class="ecicon eci-twitter"></i></a></li>
-                                                <li class="list-inline-item instagram"><a href="#"><i
-                                                            class="ecicon eci-instagram"></i></a></li>
-                                                <li class="list-inline-item youtube-play"><a href="#"><i
-                                                            class="ecicon eci-youtube-play"></i></a></li>
-                                                <li class="list-inline-item behance"><a href="#"><i
-                                                            class="ecicon eci-behance"></i></a></li>
-                                                <li class="list-inline-item whatsapp"><a href="#"><i
-                                                            class="ecicon eci-whatsapp"></i></a></li>
-                                                <li class="list-inline-item plus"><a href="#"><i
-                                                            class="ecicon eci-plus"></i></a></li>
+                                                <li class="list-inline-item facebook"><a href="#"><i class="ecicon eci-facebook"></i></a></li>
+                                                <li class="list-inline-item twitter"><a href="#"><i class="ecicon eci-twitter"></i></a></li>
+                                                <li class="list-inline-item instagram"><a href="#"><i class="ecicon eci-instagram"></i></a></li>
+                                                <li class="list-inline-item youtube-play"><a href="#"><i class="ecicon eci-youtube-play"></i></a></li>
+                                                <li class="list-inline-item behance"><a href="#"><i class="ecicon eci-behance"></i></a></li>
+                                                <li class="list-inline-item whatsapp"><a href="#"><i class="ecicon eci-whatsapp"></i></a></li>
+                                                <li class="list-inline-item plus"><a href="#"><i class="ecicon eci-plus"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -237,16 +202,13 @@ if ($products['status'] === true) {
                             <div class="ec-single-pro-tab-nav">
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab"
-                                            data-bs-target="#ec-spt-nav-details" role="tablist">Detail</a>
+                                        <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-details" role="tablist">Detail</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
-                                            role="tablist">More Information</a>
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info" role="tablist">More Information</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
-                                            role="tablist">Reviews</a>
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review" role="tablist">Reviews</a>
                                     </li>
                                 </ul>
                             </div>
@@ -282,7 +244,7 @@ if ($products['status'] === true) {
                                         <div class="ec-t-review-wrapper">
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
-                                                    <img src="assets/images/review-image/1.jpg" alt="" />
+                                                    <img src="<?php echo ROOT ?>/assets/images/review-image/1.jpg" alt="" />
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
@@ -307,7 +269,7 @@ if ($products['status'] === true) {
                                             </div>
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
-                                                    <img src="assets/images/review-image/2.jpg" alt="" />
+                                                    <img src="<?php echo ROOT ?>/assets/images/review-image/2.jpg" alt="" />
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
@@ -350,14 +312,11 @@ if ($products['status'] === true) {
                                                         <input name="your-name" placeholder="Name" type="text" />
                                                     </div>
                                                     <div class="ec-ratting-input">
-                                                        <input name="your-email" placeholder="Email*" type="email"
-                                                            required />
+                                                        <input name="your-email" placeholder="Email*" type="email" required />
                                                     </div>
                                                     <div class="ec-ratting-input form-submit">
-                                                        <textarea name="your-commemt"
-                                                            placeholder="Enter Your Comment"></textarea>
-                                                        <button class="btn btn-primary" type="submit"
-                                                            value="Submit">Submit</button>
+                                                        <textarea name="your-commemt" placeholder="Enter Your Comment"></textarea>
+                                                        <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -560,8 +519,7 @@ if ($products['status'] === true) {
                         <div class="ec-sb-pro-sl">
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/1_1.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/1_1.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Beautiful Teddy Bear</a></h5>
                                         <div class="ec-pro-rating">
@@ -580,8 +538,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/2_1.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/2_1.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Gym Backpack</a></h5>
                                         <div class="ec-pro-rating">
@@ -600,8 +557,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/3_1.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/3_1.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Beautiful Purse for Women</a></h5>
                                         <div class="ec-pro-rating">
@@ -620,8 +576,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/4_1.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/4_1.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Wool Felt Long Brim Hat</a></h5>
                                         <div class="ec-pro-rating">
@@ -640,8 +595,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/5_1.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/5_1.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Black Leather Belt</a></h5>
                                         <div class="ec-pro-rating">
@@ -660,8 +614,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/6_2.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/6_2.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Beautiful Tee for Women</a></h5>
                                         <div class="ec-pro-rating">
@@ -680,8 +633,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/7_1.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/7_1.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cotton Shirt for Men</a></h5>
                                         <div class="ec-pro-rating">
@@ -700,8 +652,7 @@ if ($products['status'] === true) {
                             </div>
                             <div>
                                 <div class="ec-sb-pro-sl-item">
-                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                            src="assets/images/product-image/8_2.jpg" alt="product" /></a>
+                                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="<?php echo ROOT ?>/assets/images/product-image/8_2.jpg" alt="product" /></a>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href="product-left-sidebar.html">I Watch for Men</a></h5>
                                         <div class="ec-pro-rating">
@@ -746,27 +697,15 @@ if ($products['status'] === true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/6_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/6_2.jpg" alt="Product" />
+                                    <img class="main-image" src="<?php echo ROOT ?>/assets/images/product-image/6_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="<?php echo ROOT ?>/assets/images/product-image/6_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="<?php echo ROOT ?>/assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="<?php echo ROOT ?>/assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="<?php echo ROOT ?>/assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -788,28 +727,16 @@ if ($products['status'] === true) {
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/6_1.jpg"
-                                                data-src-hover="assets/images/product-image/6_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#e8c2ff;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/6_2.jpg"
-                                                data-src-hover="assets/images/product-image/6_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#9cfdd5;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/6_1.jpg" data-src-hover="assets/images/product-image/6_1.jpg" data-tooltip="Gray"><span style="background-color:#e8c2ff;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/6_2.jpg" data-src-hover="assets/images/product-image/6_2.jpg" data-tooltip="Orange"><span style="background-color:#9cfdd5;"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
                                     <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$25.00" data-new="$20.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$27.00"
-                                                data-new="$22.00" data-tooltip="Medium">M</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00"
-                                                data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
+                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$25.00" data-new="$20.00" data-tooltip="Small">S</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$27.00" data-new="$22.00" data-tooltip="Medium">M</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00" data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -821,30 +748,18 @@ if ($products['status'] === true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/7_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/7_2.jpg" alt="Product" />
+                                    <img class="main-image" src="<?php echo ROOT ?>/assets/images/product-image/7_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="<?php echo ROOT ?>/assets/images/product-image/7_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
                                     <span class="sale">Sale</span>
                                 </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="<?php echo ROOT ?>/assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="<?php echo ROOT ?>/assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="<?php echo ROOT ?>/assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -866,28 +781,16 @@ if ($products['status'] === true) {
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/7_1.jpg"
-                                                data-src-hover="assets/images/product-image/7_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#01f1f1;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/7_2.jpg"
-                                                data-src-hover="assets/images/product-image/7_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#b89df8;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/7_1.jpg" data-src-hover="assets/images/product-image/7_1.jpg" data-tooltip="Gray"><span style="background-color:#01f1f1;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/7_2.jpg" data-src-hover="assets/images/product-image/7_2.jpg" data-tooltip="Orange"><span style="background-color:#b89df8;"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
                                     <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$12.00" data-new="$10.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00"
-                                                data-new="$12.00" data-tooltip="Medium">M</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00"
-                                                data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
+                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$12.00" data-new="$10.00" data-tooltip="Small">S</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00" data-new="$12.00" data-tooltip="Medium">M</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00" data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -899,30 +802,18 @@ if ($products['status'] === true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/1_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/1_2.jpg" alt="Product" />
+                                    <img class="main-image" src="<?php echo ROOT ?>/assets/images/product-image/1_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="<?php echo ROOT ?>/assets/images/product-image/1_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
                                     <span class="sale">Sale</span>
                                 </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="<?php echo ROOT ?>/assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="<?php echo ROOT ?>/assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="<?php echo ROOT ?>/assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -944,36 +835,17 @@ if ($products['status'] === true) {
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_1.jpg"
-                                                data-src-hover="assets/images/product-image/1_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#90cdf7;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_2.jpg"
-                                                data-src-hover="assets/images/product-image/1_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#ff3b66;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_3.jpg"
-                                                data-src-hover="assets/images/product-image/1_3.jpg"
-                                                data-tooltip="Green"><span
-                                                    style="background-color:#ffc476;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_4.jpg"
-                                                data-src-hover="assets/images/product-image/1_4.jpg"
-                                                data-tooltip="Sky Blue"><span
-                                                    style="background-color:#1af0ba;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/1_1.jpg" data-src-hover="assets/images/product-image/1_1.jpg" data-tooltip="Gray"><span style="background-color:#90cdf7;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/1_2.jpg" data-src-hover="assets/images/product-image/1_2.jpg" data-tooltip="Orange"><span style="background-color:#ff3b66;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/1_3.jpg" data-src-hover="assets/images/product-image/1_3.jpg" data-tooltip="Green"><span style="background-color:#ffc476;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/1_4.jpg" data-src-hover="assets/images/product-image/1_4.jpg" data-tooltip="Sky Blue"><span style="background-color:#1af0ba;"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
                                     <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$40.00" data-new="$30.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$50.00"
-                                                data-new="$40.00" data-tooltip="Medium">M</a></li>
+                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$40.00" data-new="$30.00" data-tooltip="Small">S</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$50.00" data-new="$40.00" data-tooltip="Medium">M</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -985,30 +857,18 @@ if ($products['status'] === true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/2_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/2_2.jpg" alt="Product" />
+                                    <img class="main-image" src="<?php echo ROOT ?>/assets/images/product-image/2_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="<?php echo ROOT ?>/assets/images/product-image/2_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
                                     <span class="new">New</span>
                                 </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="<?php echo ROOT ?>/assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="<?php echo ROOT ?>/assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="<?php echo ROOT ?>/assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -1025,16 +885,12 @@ if ($products['status'] === true) {
                             <span class="ec-price">
                                 <span class="old-price">$50.00</span>
                                 <span class="new-price">$40.00</span>
-                            </span>                                                
+                            </span>
                             <div class="ec-pro-option">
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/2_1.jpg"
-                                                data-src-hover="assets/images/product-image/2_2.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#fdbf04;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="<?php echo ROOT ?>/assets/images/product-image/2_1.jpg" data-src-hover="assets/images/product-image/2_2.jpg" data-tooltip="Gray"><span style="background-color:#fdbf04;"></span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1047,7 +903,7 @@ if ($products['status'] === true) {
     <!-- Related Product end -->
 
     <!-- Footer Start -->
-       <?php require_once("./_inc/footer.php") ?>
+    <?php require_once("./_inc/footer.php") ?>
 
     <!-- Footer Area End -->
 
@@ -1062,36 +918,36 @@ if ($products['status'] === true) {
                             <!-- Swiper -->
                             <div class="qty-product-cover">
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_1.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_2.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_3.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_4.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_5.jpg" alt="">
                                 </div>
                             </div>
                             <div class="qty-nav-thumb">
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_1.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_2.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_3.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_4.jpg" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/3_5.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -1131,8 +987,7 @@ if ($products['status'] === true) {
                                         <span>Size</span>
                                         <div class="ec-pro-variation-content">
                                             <ul class="ec-opt-size">
-                                                <li class="active"><a href="#" class="ec-opt-sz"
-                                                        data-tooltip="Small">S</a></li>
+                                                <li class="active"><a href="#" class="ec-opt-sz" data-tooltip="Small">S</a></li>
                                                 <li><a href="#" class="ec-opt-sz" data-tooltip="Medium">M</a></li>
                                                 <li><a href="#" class="ec-opt-sz" data-tooltip="Large">X</a></li>
                                                 <li><a href="#" class="ec-opt-sz" data-tooltip="Extra Large">XL</a></li>
@@ -1145,8 +1000,7 @@ if ($products['status'] === true) {
                                         <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                     </div>
                                     <div class="ec-quickview-cart ">
-                                        <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
-                                                class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                        <button class="btn btn-primary"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -1163,25 +1017,19 @@ if ($products['status'] === true) {
         <div class="container">
             <div class="ec-nav-panel">
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="" /></a>
+                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img src="<?php echo ROOT ?>/assets/images/icons/menu.svg" class="svg_img header_svg" alt="" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /><span
-                            class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /><span class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
-                            class="svg_img header_svg" alt="icon" /></a>
+                    <a href="index.html" class="ec-header-btn"><img src="<?php echo ROOT ?>/assets/images/icons/home.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
-                            class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
+                    <a href="wishlist.html" class="ec-header-btn"><img src="<?php echo ROOT ?>/assets/images/icons/wishlist.svg" class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
-                            class="svg_img header_svg" alt="icon" /></a>
+                    <a href="login.html" class="ec-header-btn"><img src="<?php echo ROOT ?>/assets/images/icons/user.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
 
             </div>
@@ -1189,12 +1037,12 @@ if ($products['status'] === true) {
     </div>
     <!-- Footer navigation panel for responsive display end -->
 
-    
+
 
     <!-- Cart Floating Button -->
     <div class="ec-cart-float">
         <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
+            <div class="header-icon"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
             <span class="ec-cart-count cart-count-lable">3</span>
         </a>
     </div>
@@ -1214,13 +1062,11 @@ if ($products['status'] === true) {
                 <ul>
                     <!-- Start Single Contact List -->
                     <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                        <a class="ec-list" data-number="918866774266" data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
-                                        alt="Profile image">
+                                    <img src="<?php echo ROOT ?>/assets/images/whatsapp/profile_01.jpg" class="ec-user-img" alt="Profile image">
                                     <span class="ec-status-icon"></span>
                                 </div>
                                 <!-- Display Name & Last Seen -->
@@ -1238,13 +1084,11 @@ if ($products['status'] === true) {
                     <!--/ End Single Contact List -->
                     <!-- Start Single Contact List -->
                     <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                        <a class="ec-list" data-number="918866774266" data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
-                                        alt="Profile image">
+                                    <img src="<?php echo ROOT ?>/assets/images/whatsapp/profile_02.jpg" class="ec-user-img" alt="Profile image">
                                     <span class="ec-status-icon ec-online"></span>
                                 </div>
                                 <!-- Display Name & Last Seen -->
@@ -1262,13 +1106,11 @@ if ($products['status'] === true) {
                     <!--/ End Single Contact List -->
                     <!-- Start Single Contact List -->
                     <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                        <a class="ec-list" data-number="918866774266" data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
-                                        alt="Profile image">
+                                    <img src="<?php echo ROOT ?>/assets/images/whatsapp/profile_03.jpg" class="ec-user-img" alt="Profile image">
                                     <span class="ec-status-icon ec-offline"></span>
                                 </div>
                                 <!-- Display Name & Last Seen -->
@@ -1286,13 +1128,11 @@ if ($products['status'] === true) {
                     <!--/ End Single Contact List -->
                     <!-- Start Single Contact List -->
                     <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                        <a class="ec-list" data-number="918866774266" data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
-                                        alt="Profile image">
+                                    <img src="<?php echo ROOT ?>/assets/images/whatsapp/profile_04.jpg" class="ec-user-img" alt="Profile image">
                                     <span class="ec-status-icon ec-offline"></span>
                                 </div>
                                 <!-- Display Name & Last Seen -->
@@ -1316,7 +1156,7 @@ if ($products['status'] === true) {
         <div class="ec-right-bottom">
             <div class="ec-box">
                 <div class="ec-button rotateBackward">
-                    <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
+                    <img class="whatsapp" src="<?php echo ROOT ?>/assets/images/common/whatsapp.png" alt="whatsapp icon" />
                 </div>
             </div>
         </div>
@@ -1329,5 +1169,4 @@ if ($products['status'] === true) {
 
 </body>
 
-<!-- Mirrored from loopinfosol.in/themeforest/ekka-html/ekka-html/product-left-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Oct 2021 22:34:40 GMT -->
 </html>
