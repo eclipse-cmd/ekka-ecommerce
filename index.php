@@ -460,7 +460,7 @@ if ($products['status'] === true) {
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                <a href="products-shop.php" class="image">
+                                                <a href="product-shop.php" class="image">
                                                     <img class="main-image" src="assets/images/product-image/10_1.jpg" alt="Product" />
                                                     <img class="hover-image" src="assets/images/product-image/10_2.jpg" alt="Product" />
                                                 </a>
