@@ -32,7 +32,7 @@
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item"><a href="<?php ROOT ?> index.php">Home</a></li>
                                 <li class="ec-breadcrumb-item active">Shop</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
@@ -716,7 +716,7 @@
                             class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
+                    <a href="<?php ROOT ?> index.php" class="ec-header-btn"><img src="assets/images/icons/home.svg"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">

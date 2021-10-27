@@ -139,7 +139,7 @@ if ($products['status'] === true) {
                                                     </div>
                                                 </div>
                                                 <div class="ec-pro-content">
-                                                    <h5 class="ec-pro-title" style="text-transform: capitalize;"><a href="product-left-sidebar.html"><?php echo $product['name'] ?></a></h5>
+                                                    <h5 class="ec-pro-title" style="text-transform: capitalize;"><a href="products-shop.php"><?php echo $product['name'] ?></a></h5>
                                                     <div class="ec-pro-rating">
                                                         <?php for ($i = 0; $i < $product['rating']; $i++) : ?>
                                                             <i class="ecicon eci-star fill"></i>
@@ -460,7 +460,7 @@ if ($products['status'] === true) {
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
+                                                <a href="products-shop.php" class="image">
                                                     <img class="main-image" src="assets/images/product-image/10_1.jpg" alt="Product" />
                                                     <img class="hover-image" src="assets/images/product-image/10_2.jpg" alt="Product" />
                                                 </a>
