@@ -68,44 +68,41 @@ if ($product['status'] === true) {
                                         <div class="single-product-scroll">
                                             <div class="single-product-cover">
                                                 <div class="single-slide zoom-image-hover">
-                                                    <?php
-                                                    $img1 = json_decode($product['img_path'])[0];
-                                                    // $img2 = json_decode($product['img_path'])[1];
-                                                    if ($img1) print("<img class='img-responsive' src='assets/images/product-image/" . $img1 . "'
-                                                                                alt=''>");
-
-                                                    ?>
+                                                     <?php 
+                                                            $img1 = json_decode($product['img_path'])[0];
+                                                            if ($img1) print("<img class='img-responsive' src='../../assets/images/product-image/" . $img1 . "' alt='product'>");
+                                                     ?>
                                                 </div>
-                                                <!--  <div class="single-slide zoom-image-hover">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_2.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide zoom-image-hover">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide zoom-image-hover">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide zoom-image-hover">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
-                                                                    </div> -->
+                                               <!--  <div class="single-slide zoom-image-hover">
+                                                    <img class="img-responsive" src="<?php echo $product['img_path'] ?>/assets/images/product-image/9_2.jpg" alt="">
+                                                </div> -->
+                                                <!-- <div class="single-slide zoom-image-hover"> -->
+                                             <!--        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
+                                                </div>
+                                                <div class="single-slide zoom-image-hover">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
+                                                </div>
+                                                <div class="single-slide zoom-image-hover">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
+                                                </div> -->
                                             </div>
-                                            <!--  <div class="single-nav-thumb">
-                                                                    <div class="single-slide">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_1.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_2.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
-                                                                    </div>
-                                                                    <div class="single-slide">
-                                                                        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
-                                                                    </div>
-                                                                </div> -->
+                                             <div class="single-nav-thumb">
+                                               <!--  <div class="single-slide">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_1.jpg" alt="">
+                                                </div>
+                                                <div class="single-slide">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_2.jpg" alt="">
+                                                </div>
+                                                <div class="single-slide">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
+                                                </div>
+                                                <div class="single-slide">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
+                                                </div>
+                                                <div class="single-slide">
+                                                    <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
+                                                </div> -->
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="single-pro-desc">
@@ -124,9 +121,7 @@ if ($product['status'] === true) {
                                                 <span class="ec-read-review"><a href="#ec-spt-nav-review">Be the first to
                                                         review this product</a></span>
                                             </div>
-                                            <div class="ec-single-desc">Lorem Ipsum is simply dummy text of the printing and
-                                                typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                                text ever since the 1990</div>
+                                            <div class="ec-single-desc"><?php echo $product['short_description'] ?></div>
 
                                             <div class="ec-single-sales">
                                                 <div class="ec-single-sales-inner">
@@ -149,10 +144,10 @@ if ($product['status'] === true) {
                                                     <span class="ec-single-ps-title">As low as</span>
                                                     <span class="new-price">$<?php echo $product['price'] ?></span>
                                                 </div>
-                                                <div class="ec-single-stoke">
+                                               <!--  <div class="ec-single-stoke">
                                                     <span class="ec-single-ps-title">IN STOCK</span>
                                                     <span class="ec-single-sku">SKU#: WH12</span>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             <!--   <div class="ec-pro-variation">
