@@ -12,9 +12,18 @@ $db_arrtributes = [
 ];
 $dbh = new PDO('mysql: host=' . HOST . '; dbname=' . DBNAME, DBUSER, DBPASS, $db_arrtributes);
 
-$isAuthenticated = 'false';
+$isAuthenticated = false;
 if (isset($_SESSION['isAuth']) && $_SESSION['isAuth']['status'] === true) {
     $isAuthenticated = true;
+}
+
+function sendRequest($status = true, $message = '', $data = [])
+{
+    print(json_encode([
+        "status" => $status,
+        "message" => $message,
+        "data" => $data
+    ]));
 }
 
 function logOut(){

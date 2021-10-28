@@ -2,19 +2,13 @@
 require_once('./config/root.php');
 require_once('./config/Product.php');
 $isAuth = $GLOBALS['isAuthenticated'];
-if ($isAuth !== true) {
-    header("Location: ./login.php");
-}
+// if ($isAuth !== true) {
+//     header("Location: ./login");
+// }
 $products = Product::getProducts();
 if ($products['status'] === true) {
     $products = $products['data'];
 }
-
-// foreach ($products as $product) {
-//     print_r(json_decode($product['img_path']));
-// }
-// // print_e($products);
-// exit();
 ?>
 
 
@@ -34,7 +28,43 @@ if ($products['status'] === true) {
 
     <!-- ekka Cart Start -->
     <div class="ec-side-cart-overlay"></div>
-    <?php require_once("./_inc/sideCart.php") ?>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+
+                </ul>
+            </div>
+            <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Sub-Total :</td>
+                                <td class="text-right">$300.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">VAT (20%) :</td>
+                                <td class="text-right">$60.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Total :</td>
+                                <td class="text-right primary-color">$360.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    <a href="<?php ROOT ?>./cart.php" class="btn btn-primary">View Cart</a>
+                    <a href="<?php ROOT ?>./checkout.php" class="btn btn-secondary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ekka Cart End -->
 
     <!-- Main Slider Start -->
@@ -132,9 +162,10 @@ if ($products['status'] === true) {
                                                             <img src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" />
                                                         </a> -->
                                                         <div class="ec-pro-actions">
-                                                            <!-- <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a> -->
-                                                            <button title="Add To Cart" class=" add-to-cart"><img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
-                                                            <!-- <a class="ec-btn-group wishlist" title="Wishlist"><img src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a> -->
+                                                            <button title="Add To Cart" class="add-to-cart" onclick="addToCart(<?php echo $product['id'] ?>)">
+                                                                <img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" />
+                                                                Add To Cart
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1436,6 +1467,85 @@ if ($products['status'] === true) {
     <!-- Footer navigation panel for responsive display end -->
 
     <?php require_once('./_inc/js.php') ?>
+
+    <script>
+        function updateCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) ?? []
+            const cartDiv = $('.eccart-pro-items')
+            var htmlDiv = ""
+
+            if (cart.length > 0) {
+                for (let i = 0; i < cart.length; i++) {
+                    htmlDiv = htmlDiv.concat(`
+                    <li>
+                        <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" 
+                            class="sidekka_pro_img">
+                                <img src="assets/images/product-image/" alt="product">
+                        </a>
+                        <div class="ec-pro-content">
+                            <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="cart_pro_title">${cart[i].name}</a>
+                            <span class="cart-price"><span>${cart[i].price}</span> x 1</span>
+                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
+                            <div class="inc ec_qtybtn">+</div></div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    `)
+                }
+                cartDiv.html(htmlDiv)
+            } else {
+                cartDiv.html(`<li><p class='emp-cart-msg'>Your cart is empty!</p></li>`)
+            }
+        }
+
+        function addToCart(id) {
+            console.log(id)
+            $.ajax({
+                url: `<?php echo ROOT ?>/config/core/add-to-cart`,
+                type: "POST",
+                data: {
+                    id
+                },
+                success: function(response, textStatus, jqXHR) {
+                    response = JSON.parse(response)
+
+                    if (response.status === false) {
+                        $.ajax({
+                            url: `<?php echo ROOT ?>/config/core/get-product`,
+                            type: "POST",
+                            data: {
+                                id
+                            },
+                            success: function(response) {
+                                response = JSON.parse(response)
+                                if (response.status === true) {
+                                    const product = response.data.product
+                                    let cart = JSON.parse(localStorage.getItem('cart')) ?? []
+                                    cart.push(product);
+                                    localStorage.setItem('cart', JSON.stringify(cart))
+                                    alert("Item added to cart")
+                                    updateCart()
+                                } else {
+                                    alert("There is an error adding this product to cart")
+                                }
+                            },
+                            error: function(errorThrown) {
+                                console.log(errorThrown);
+                            }
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        updateCart()
+    </script>
 </body>
 
 </html>

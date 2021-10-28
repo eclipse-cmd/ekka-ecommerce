@@ -351,42 +351,42 @@ function ecCheckCookie()
 	});
 
     /*----------------------------- Sidekka And SideMenu -----------------------------------*/
-    $("body").on("click", ".add-to-cart", function(){
+    // $("body").on("click", ".add-to-cart-btn", function(){
 
-        $(".ec-cart-float").fadeIn();
+    //     $(".ec-cart-float").fadeIn();
 
-        var count = $(".cart-count-lable").html();        
-        count++;
+    //     var count = $(".cart-count-lable").html();        
+    //     count++;
 
-        $(".cart-count-lable").html(count);
+    //     $(".cart-count-lable").html(count);
 
-        // Remove Empty message    
-        $(".emp-cart-msg").parent().remove();        
+    //     // Remove Empty message    
+    //     $(".emp-cart-msg").parent().remove();        
 
-        setTimeout(function(){ 
-            $(".ec-cart-float").fadeOut(); 
-        }, 5000);
+    //     setTimeout(function(){ 
+    //         $(".ec-cart-float").fadeOut(); 
+    //     }, 5000);
         
-        // get an image url
-        var img_url = $(this).parents().parents().children(".image").find(".main-image").attr("src");
-        var p_name = $(this).parents().parents().parents().find(".ec-pro-title").children().html();
-        var p_price = $(this).parents().parents().parents().find(".ec-price").children(".new-price").html();
+    //     // get an image url
+    //     var img_url = $(this).parents().parents().children(".image").find(".main-image").attr("src");
+    //     var p_name = $(this).parents().parents().parents().find(".ec-pro-title").children().html();
+    //     var p_price = $(this).parents().parents().parents().find(".ec-price").children(".new-price").html();
         
-        var p_html = '<li>'+
-                        '<a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="'+ img_url +'" alt="product"></a>'+
-                        '<div class="ec-pro-content">'+
-                            '<a href="product-left-sidebar.html" class="cart_pro_title">'+ p_name +'</a>'+
-                        '<span class="cart-price"><span>'+ p_price +'</span> x 1</span>'+
-                            '<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>'+
-                                '<input class="qty-input" type="text" name="ec_qtybtn" value="1">'+
-                            '<div class="inc ec_qtybtn">+</div></div>'+
-                            '<a href="javascript:void(0)" class="remove">×</a>'+
-                        '</div>'+
-                    '</li>';
+    //     var p_html = '<li>'+
+    //                     '<a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="'+ img_url +'" alt="product"></a>'+
+    //                     '<div class="ec-pro-content">'+
+    //                         '<a href="product-left-sidebar.html" class="cart_pro_title">'+ p_name +'</a>'+
+    //                     '<span class="cart-price"><span>'+ p_price +'</span> x 1</span>'+
+    //                         '<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>'+
+    //                             '<input class="qty-input" type="text" name="ec_qtybtn" value="1">'+
+    //                         '<div class="inc ec_qtybtn">+</div></div>'+
+    //                         '<a href="javascript:void(0)" class="remove">×</a>'+
+    //                     '</div>'+
+    //                 '</li>';
 
-        $('.eccart-pro-items').append(p_html);    
+    //     $('.eccart-pro-items').append(p_html);    
         
-    });
+    // });
 
     (function() {
         var $ekkaToggle = $(".ec-side-toggle"),
@@ -1281,10 +1281,10 @@ function ecCheckCookie()
     });
 
     $(document).ready(function(){
-        $("button.add-to-cart").click(function() {
-            //$("#addtocart_toast").addClass("show");
-            // setTimeout(function(){ $("#addtocart_toast").removeClass("show") }, 3000);
-        });
+        // $("button.add-to-cart").click(function() {
+        //     //$("#addtocart_toast").addClass("show");
+        //     // setTimeout(function(){ $("#addtocart_toast").removeClass("show") }, 3000);
+        // });
         $(".ec-btn-group.wishlist").click(function() {
         var isWishlist = $(this).hasClass("active");
         if(isWishlist){

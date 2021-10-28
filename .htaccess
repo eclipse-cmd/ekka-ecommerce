@@ -7,3 +7,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 
 RewriteRule ^product/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+) product.php?id=$1&name=$2 [NC,L]
+RewriteRule ^config/core/([0-9a-zA-Z_-]+) config/Core.php?action=$1 [NC,L]

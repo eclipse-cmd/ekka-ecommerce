@@ -1,6 +1,6 @@
 <?php
 
-class Product
+class Cart
 {
     public static function getProducts()
     {
@@ -28,7 +28,7 @@ class Product
         }
     }
 
-    public static function getProduct($id, $api = false)
+    public static function getProduct($id)
     {
         $statement = $GLOBALS['dbh']->prepare("SELECT * FROM product WHERE id = ?");
         try {
@@ -36,13 +36,11 @@ class Product
             if ($statement->rowCount() > 0) {
                 $product = $statement->fetch();
 
-                if ($api === true) return $product;
                 return [
                     "status" => true,
                     "data" => $product
                 ];
             } else {
-                if ($api === true) return false;
                 return [
                     "status" => false,
                     "message" => "Product not found"

@@ -68,16 +68,16 @@ if ($product['status'] === true) {
                                         <div class="single-product-scroll">
                                             <div class="single-product-cover">
                                                 <div class="single-slide zoom-image-hover">
-                                                     <?php 
-                                                            $img1 = json_decode($product['img_path'])[0];
-                                                            if ($img1) print("<img class='img-responsive' src='../../assets/images/product-image/" . $img1 . "' alt='product'>");
-                                                     ?>
+                                                    <?php
+                                                    $img1 = json_decode($product['img_path'])[0];
+                                                    if ($img1) print("<img class='img-responsive' src=" . ROOT . "/assets/images/product-image/" . $img1 . " alt='product'>");
+                                                    ?>
                                                 </div>
-                                               <!--  <div class="single-slide zoom-image-hover">
+                                                <!--  <div class="single-slide zoom-image-hover">
                                                     <img class="img-responsive" src="<?php echo $product['img_path'] ?>/assets/images/product-image/9_2.jpg" alt="">
                                                 </div> -->
                                                 <!-- <div class="single-slide zoom-image-hover"> -->
-                                             <!--        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
+                                                <!--        <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
                                                 </div>
                                                 <div class="single-slide zoom-image-hover">
                                                     <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_4.jpg" alt="">
@@ -86,8 +86,8 @@ if ($product['status'] === true) {
                                                     <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_3.jpg" alt="">
                                                 </div> -->
                                             </div>
-                                             <div class="single-nav-thumb">
-                                               <!--  <div class="single-slide">
+                                            <div class="single-nav-thumb">
+                                                <!--  <div class="single-slide">
                                                     <img class="img-responsive" src="<?php echo ROOT ?>/assets/images/product-image/9_1.jpg" alt="">
                                                 </div>
                                                 <div class="single-slide">
@@ -144,7 +144,7 @@ if ($product['status'] === true) {
                                                     <span class="ec-single-ps-title">As low as</span>
                                                     <span class="new-price">$<?php echo $product['price'] ?></span>
                                                 </div>
-                                               <!--  <div class="ec-single-stoke">
+                                                <!--  <div class="ec-single-stoke">
                                                     <span class="ec-single-ps-title">IN STOCK</span>
                                                     <span class="ec-single-sku">SKU#: WH12</span>
                                                 </div> -->
