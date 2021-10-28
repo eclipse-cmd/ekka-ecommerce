@@ -12,6 +12,7 @@ if ($product['status'] === true) {
     $product = $product['data'];
 } else {
     echo "No product found";
+    exit();
 }
 
 ?>
