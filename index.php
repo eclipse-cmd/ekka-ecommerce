@@ -1449,7 +1449,7 @@ if ($products['status'] === true) {
                     <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti ec-header-count cart-count-lable">0</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="<?php ROOT ?> index.php" class="ec-header-btn"><img src="assets/images/icons/home.svg" class="svg_img header_svg" alt="icon" /></a>
@@ -1478,9 +1478,11 @@ if ($products['status'] === true) {
                 for (let i = 0; i < cart.length; i++) {
                     htmlDiv = htmlDiv.concat(`
                     <li>
-                        <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" 
-                            class="sidekka_pro_img">
-                                <img src="assets/images/product-image/" alt="product">
+                        <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="sidekka_pro_img">
+                        <?php
+                        $img1 = json_decode($product['img_path'])[0];
+                        if ($img1) print("<img class='img-responsive' src=" . ROOT . "/assets/images/product-image/" . $img1 . " alt='product'>");
+                        ?>
                         </a>
                         <div class="ec-pro-content">
                             <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="cart_pro_title">${cart[i].name}</a>
@@ -1488,7 +1490,7 @@ if ($products['status'] === true) {
                             <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
                                 <input class="qty-input" type="text" name="ec_qtybtn" value="1">
                             <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" class="remove">×</a>
+                            <a href="javascript:void(0)" onclick = "remove()" class="remove">×</a>
                         </div>
                     </li>
                     `)
@@ -1497,6 +1499,13 @@ if ($products['status'] === true) {
             } else {
                 cartDiv.html(`<li><p class='emp-cart-msg'>Your cart is empty!</p></li>`)
             }
+        }
+
+        function remove() {
+            var existingItem = JSON.parse(localStorage.getItem("cart"));
+            var indexOf = 0;
+            existingItem.splice(indexOf, 1)
+            localStorage.setItem('cart', JSON.stringify(existingItem));
         }
 
         function addToCart(id) {
@@ -1524,7 +1533,7 @@ if ($products['status'] === true) {
                                     let cart = JSON.parse(localStorage.getItem('cart')) ?? []
                                     cart.push(product);
                                     localStorage.setItem('cart', JSON.stringify(cart))
-                                    alert("Item added to cart")
+                                    // alert("Item added to cart")
                                     updateCart()
                                 } else {
                                     alert("There is an error adding this product to cart")
@@ -1543,7 +1552,6 @@ if ($products['status'] === true) {
                 }
             });
         }
-
         updateCart()
     </script>
 </body>

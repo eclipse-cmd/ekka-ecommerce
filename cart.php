@@ -4,7 +4,7 @@ require_once('./config/root.php');
 $isAuth = $GLOBALS['isAuthenticated'];
 
 if ($isAuth !== true) {
-	header("Location: ./login.php");
+    header("Location: ./login.php");
 }
 ?>
 
@@ -12,7 +12,7 @@ if ($isAuth !== true) {
 <html lang="en">
 
 <head>
-<?php require_once('./_inc/header-login.php') ?>    
+    <?php require_once('./_inc/header-login.php') ?>
 </head>
 
 <body>
@@ -25,8 +25,8 @@ if ($isAuth !== true) {
     <?php require_once("./_inc/sideCart.php") ?>
     <!-- ekka Cart End -->
 
-  <!-- Ec breadcrumb start -->
-  <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -72,17 +72,11 @@ if ($isAuth !== true) {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/1.jpg"
-                                                                alt="" />Stylish Baby Shoes</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$56.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
+                                                    <td data-label="Product" class="ec-cart-pro-name"><a href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4" src="assets/images/product-image/1.jpg" alt="" />Stylish Baby Shoes</a></td>
+                                                    <td data-label="Price" class="ec-cart-pro-price"><span class="amount">$56.00</span></td>
+                                                    <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
                                                         <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
+                                                            <input class="cart-plus-minus" type="text" name="cartqtybutton" value="1" />
                                                         </div>
                                                     </td>
                                                     <td data-label="Total" class="ec-cart-pro-subtotal">$56.00</td>
@@ -91,17 +85,11 @@ if ($isAuth !== true) {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/2.jpg"
-                                                                alt="" />Unisex Fully Solid Hoodie</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$75.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
+                                                    <td data-label="Product" class="ec-cart-pro-name"><a href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4" src="assets/images/product-image/2.jpg" alt="" />Unisex Fully Solid Hoodie</a></td>
+                                                    <td data-label="Price" class="ec-cart-pro-price"><span class="amount">$75.00</span></td>
+                                                    <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
                                                         <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
+                                                            <input class="cart-plus-minus" type="text" name="cartqtybutton" value="1" />
                                                         </div>
                                                     </td>
                                                     <td data-label="Total" class="ec-cart-pro-subtotal">$75.00</td>
@@ -110,17 +98,11 @@ if ($isAuth !== true) {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/3.jpg"
-                                                                alt="" />Beautiful T-shirt For Women</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$48.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
+                                                    <td data-label="Product" class="ec-cart-pro-name"><a href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4" src="assets/images/product-image/3.jpg" alt="" />Beautiful T-shirt For Women</a></td>
+                                                    <td data-label="Price" class="ec-cart-pro-price"><span class="amount">$48.00</span></td>
+                                                    <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
                                                         <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
+                                                            <input class="cart-plus-minus" type="text" name="cartqtybutton" value="1" />
                                                         </div>
                                                     </td>
                                                     <td data-label="Total" class="ec-cart-pro-subtotal">$48.00</td>
@@ -129,17 +111,11 @@ if ($isAuth !== true) {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/4.jpg"
-                                                                alt="" />Wool Hat For Men</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$95.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
+                                                    <td data-label="Product" class="ec-cart-pro-name"><a href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4" src="assets/images/product-image/4.jpg" alt="" />Wool Hat For Men</a></td>
+                                                    <td data-label="Price" class="ec-cart-pro-price"><span class="amount">$95.00</span></td>
+                                                    <td data-label="Quantity" class="ec-cart-pro-qty" style="text-align: center;">
                                                         <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
+                                                            <input class="cart-plus-minus" type="text" name="cartqtybutton" value="1" />
                                                         </div>
                                                     </td>
                                                     <td data-label="Total" class="ec-cart-pro-subtotal">$95.00</td>
@@ -180,8 +156,7 @@ if ($isAuth !== true) {
                                         <span class="ec-cart-wrap">
                                             <label>Country *</label>
                                             <span class="ec-cart-select-inner">
-                                                <select name="ec_cart_country" id="ec-cart-select-country"
-                                                    class="ec-cart-select">
+                                                <select name="ec_cart_country" id="ec-cart-select-country" class="ec-cart-select">
                                                     <option selected="" disabled="">United States</option>
                                                     <option value="1">Country 1</option>
                                                     <option value="2">Country 2</option>
@@ -194,8 +169,7 @@ if ($isAuth !== true) {
                                         <span class="ec-cart-wrap">
                                             <label>State/Province</label>
                                             <span class="ec-cart-select-inner">
-                                                <select name="ec_cart_state" id="ec-cart-select-state"
-                                                    class="ec-cart-select">
+                                                <select name="ec_cart_state" id="ec-cart-select-state" class="ec-cart-select">
                                                     <option selected="" disabled="">Please Select a region, state
                                                     </option>
                                                     <option value="1">Region/State 1</option>
@@ -230,12 +204,9 @@ if ($isAuth !== true) {
                                             <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
                                         </div>
                                         <div class="ec-cart-coupan-content">
-                                            <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
-                                                action="#">
-                                                <input class="ec-coupan" type="text" required=""
-                                                    placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                                <button class="ec-coupan-btn button btn-primary" type="submit"
-                                                    name="subscribe" value="">Apply</button>
+                                            <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post" action="#">
+                                                <input class="ec-coupan" type="text" required="" placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                                <button class="ec-coupan-btn button btn-primary" type="submit" name="subscribe" value="">Apply</button>
                                             </form>
                                         </div>
                                         <div class="ec-cart-summary-total">
@@ -272,27 +243,15 @@ if ($isAuth !== true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/6_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/6_2.jpg" alt="Product" />
+                                    <img class="main-image" src="assets/images/product-image/6_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="assets/images/product-image/6_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -314,28 +273,16 @@ if ($isAuth !== true) {
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/6_1.jpg"
-                                                data-src-hover="assets/images/product-image/6_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#e8c2ff;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/6_2.jpg"
-                                                data-src-hover="assets/images/product-image/6_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#9cfdd5;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/6_1.jpg" data-src-hover="assets/images/product-image/6_1.jpg" data-tooltip="Gray"><span style="background-color:#e8c2ff;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/6_2.jpg" data-src-hover="assets/images/product-image/6_2.jpg" data-tooltip="Orange"><span style="background-color:#9cfdd5;"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
                                     <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$25.00" data-new="$20.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$27.00"
-                                                data-new="$22.00" data-tooltip="Medium">M</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00"
-                                                data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
+                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$25.00" data-new="$20.00" data-tooltip="Small">S</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$27.00" data-new="$22.00" data-tooltip="Medium">M</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00" data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -347,30 +294,18 @@ if ($isAuth !== true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/7_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/7_2.jpg" alt="Product" />
+                                    <img class="main-image" src="assets/images/product-image/7_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="assets/images/product-image/7_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
                                     <span class="sale">Sale</span>
                                 </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -392,28 +327,16 @@ if ($isAuth !== true) {
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/7_1.jpg"
-                                                data-src-hover="assets/images/product-image/7_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#01f1f1;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/7_2.jpg"
-                                                data-src-hover="assets/images/product-image/7_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#b89df8;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/7_1.jpg" data-src-hover="assets/images/product-image/7_1.jpg" data-tooltip="Gray"><span style="background-color:#01f1f1;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/7_2.jpg" data-src-hover="assets/images/product-image/7_2.jpg" data-tooltip="Orange"><span style="background-color:#b89df8;"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
                                     <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$12.00" data-new="$10.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00"
-                                                data-new="$12.00" data-tooltip="Medium">M</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00"
-                                                data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
+                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$12.00" data-new="$10.00" data-tooltip="Small">S</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00" data-new="$12.00" data-tooltip="Medium">M</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00" data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -425,30 +348,18 @@ if ($isAuth !== true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/1_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/1_2.jpg" alt="Product" />
+                                    <img class="main-image" src="assets/images/product-image/1_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="assets/images/product-image/1_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
                                     <span class="sale">Sale</span>
                                 </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -470,36 +381,17 @@ if ($isAuth !== true) {
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_1.jpg"
-                                                data-src-hover="assets/images/product-image/1_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#90cdf7;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_2.jpg"
-                                                data-src-hover="assets/images/product-image/1_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#ff3b66;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_3.jpg"
-                                                data-src-hover="assets/images/product-image/1_3.jpg"
-                                                data-tooltip="Green"><span
-                                                    style="background-color:#ffc476;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_4.jpg"
-                                                data-src-hover="assets/images/product-image/1_4.jpg"
-                                                data-tooltip="Sky Blue"><span
-                                                    style="background-color:#1af0ba;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/1_1.jpg" data-src-hover="assets/images/product-image/1_1.jpg" data-tooltip="Gray"><span style="background-color:#90cdf7;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/1_2.jpg" data-src-hover="assets/images/product-image/1_2.jpg" data-tooltip="Orange"><span style="background-color:#ff3b66;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/1_3.jpg" data-src-hover="assets/images/product-image/1_3.jpg" data-tooltip="Green"><span style="background-color:#ffc476;"></span></a></li>
+                                        <li><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/1_4.jpg" data-src-hover="assets/images/product-image/1_4.jpg" data-tooltip="Sky Blue"><span style="background-color:#1af0ba;"></span></a></li>
                                     </ul>
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
                                     <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$40.00" data-new="$30.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$50.00"
-                                                data-new="$40.00" data-tooltip="Medium">M</a></li>
+                                        <li class="active"><a href="#" class="ec-opt-sz" data-old="$40.00" data-new="$30.00" data-tooltip="Small">S</a></li>
+                                        <li><a href="#" class="ec-opt-sz" data-old="$50.00" data-new="$40.00" data-tooltip="Medium">M</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -511,30 +403,18 @@ if ($isAuth !== true) {
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="assets/images/product-image/2_1.jpg" alt="Product" />
-                                    <img class="hover-image"
-                                        src="assets/images/product-image/2_2.jpg" alt="Product" />
+                                    <img class="main-image" src="assets/images/product-image/2_1.jpg" alt="Product" />
+                                    <img class="hover-image" src="assets/images/product-image/2_2.jpg" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
                                     <span class="new">New</span>
                                 </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
-                                        alt="" /></a>
+                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
-                                            class="svg_img pro_svg" alt="" /></a>
+                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
+                                    <button title="Add To Cart" class=" add-to-cart"><img src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    <a class="ec-btn-group wishlist" title="Wishlist"><img src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -551,16 +431,12 @@ if ($isAuth !== true) {
                             <span class="ec-price">
                                 <span class="old-price">$50.00</span>
                                 <span class="new-price">$40.00</span>
-                            </span>                                                
+                            </span>
                             <div class="ec-pro-option">
                                 <div class="ec-pro-color">
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/2_1.jpg"
-                                                data-src-hover="assets/images/product-image/2_2.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#fdbf04;"></span></a></li>
+                                        <li class="active"><a href="#" class="ec-opt-clr-img" data-src="assets/images/product-image/2_1.jpg" data-src-hover="assets/images/product-image/2_2.jpg" data-tooltip="Gray"><span style="background-color:#fdbf04;"></span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -580,25 +456,19 @@ if ($isAuth !== true) {
         <div class="container">
             <div class="ec-nav-panel">
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon" /></a>
+                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="icon" /><span
-                            class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
-                            class="svg_img header_svg" alt="icon" /></a>
+                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
-                            class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
+                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg" class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="<?php ROOT ?>./login.php" class="ec-header-btn"><img src="assets/images/icons/user.svg"
-                            class="svg_img header_svg" alt="icon" /></a>
+                    <a href="<?php ROOT ?>./login.php" class="ec-header-btn"><img src="assets/images/icons/user.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
 
             </div>

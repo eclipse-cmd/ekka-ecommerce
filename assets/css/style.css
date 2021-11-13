@@ -21655,7 +21655,7 @@ select::-ms-expand {
   transition: all 0.3s ease 0s;
   outline: none;
   border-radius: 0px;
-  width: 150px;
+  /* width: 150px; */
   margin: 15px auto 0;
   display: -webkit-box;
   display: -ms-flexbox;
