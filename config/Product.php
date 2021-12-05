@@ -2,7 +2,7 @@
 
 class Product
 {
-    public static function getProducts()
+    public static function getProducts($api = false)
     {
         $statement = $GLOBALS['dbh']->prepare("SELECT * FROM product ORDER BY 'id' desc LIMIT 8");
         try {
@@ -10,11 +10,13 @@ class Product
             if ($statement->rowCount() > 0) {
                 $products = $statement->fetchAll();
 
+                if ($api === true) return $products;
                 return [
                     "status" => true,
                     "data" => $products
                 ];
             } else {
+                if ($api === true) return false;
                 return [
                     "status" => false,
                     "message" => "No item found"

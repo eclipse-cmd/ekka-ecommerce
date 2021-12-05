@@ -23,5 +23,14 @@ if ($_REQUEST['action'] === "get-product") {
         return sendRequest(false, '', []);
     }
 };
+if ($_REQUEST['action'] === "get-products") {
+    $products = Product::getProducts($api = true);
+
+    if (isset($products) && !empty($products)) {
+        return sendRequest(true, '', ["products" => $products]);
+    } else {
+        return sendRequest(false, '', []);
+    }
+};
 
 sendRequest(false, "", []);

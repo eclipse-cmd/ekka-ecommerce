@@ -146,6 +146,7 @@
                 <div class="ec-register-wrapper">
                     <div class="ec-register-container">
                         <div class="ec-register-form">
+                       
                             <form action="" method="post">
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>First Name*</label>
@@ -207,56 +208,19 @@
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>City *</label>
-                                    <span class="ec-rg-select-inner">
-                                      <!--   <select name="ec_select_city" id="ec-select-city" class="ec-register-select">
-                                            <option selected disabled>City</option>
-                                            <option value="1">City 1</option>
-                                            <option value="2">City 2</option>
-                                            <option value="3">City 3</option>
-                                            <option value="4">City 4</option>
-                                            <option value="5">City 5</option>
-                                        </select> -->
-                                        <textarea class="ec-register-select"></textarea>
-                                    </span>
+                                    <input type="text" name="city" placeholder="City" />
+
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
-                                    <label>Post Code</label>
+                                    <label>Post Code *</label>
                                     <input type="text" name="postalcode" placeholder="Post Code" />
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     <label>Country *</label>
-                                    <span class="ec-rg-select-inner">
-                                        <!-- <select name="ec_select_country[]" id="ec-select-country" class="ec-register-select">
-                                            <option selected disabled>Country</option>
-                                            <option value="1">NIGERIA</option>
-                                            <option value="2">USA</option>
-                                            <option value="3">ENGLAND</option>
-                                            <option value="4">CANADA</option>
-                                            <option value="5">JAPAN</option>
-                                        </select> -->
-                                        <textarea class="ec-register-select"></textarea>
-                                         <div class="invalid-feedback small">
-                                            <div class="small text-danger">
-                                                <?php echo $errors['ec_select_country'] ?? '' ?>
-                                            </div>
-                                    </div>
-                                    </span>
-                                </span>
-                                <span class="ec-register-wrap">
-                                    <label>Region State</label>
-                                    <span class="ec-rg-select-inner">
-                                       <!--  <select name="ec_select_state" id="ec-select-state" class="ec-register-select">
-                                            <option selected disabled>Region/State</option>
-                                            <option value="1">Region/State 1</option>
-                                            <option value="2">Region/State 2</option>
-                                            <option value="3">Region/State 3</option>
-                                            <option value="4">Region/State 4</option>
-                                            <option value="5">Region/State 5</option>
-                                        </select> -->
-                                        <textarea class="ec-register-select"></textarea>
+                                    <input type="text" name="country" placeholder="country" />
 
-                                    </span>
                                 </span>
+                              
                                <!--  <span class="ec-register-wrap ec-recaptcha">
                                     <span class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"
                                         data-callback="verifyRecaptchaCallback"

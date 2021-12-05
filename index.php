@@ -1469,37 +1469,67 @@ if ($products['status'] === true) {
     <?php require_once('./_inc/js.php') ?>
 
     <script>
-        function updateCart() {
+        setCart()
+        var products = [];
+        (function getProducts() {
+            $.ajax({
+                url: `<?php echo ROOT ?>/config/core/get-products`,
+                type: "POST",
+
+                success: function(response) {
+                    response = JSON.parse(response)
+                    if (response.status === true) {
+                        products = response.data.products
+                    }
+                }
+            });
+        })()
+
+        function getCart() {
             const cart = JSON.parse(localStorage.getItem('cart')) ?? []
+
+            console.log('Cart: ', cart)
+            console.log("Cart: ", cart instanceof Array)
+            return cart
+        }
+
+        function setCart() {
+            let cart = getCart()
             const cartDiv = $('.eccart-pro-items')
-            var htmlDiv = ""
 
             if (cart.length > 0) {
+                let htmlDiv = ""
                 for (let i = 0; i < cart.length; i++) {
-                    htmlDiv = htmlDiv.concat(`
-                    <li>
-                        <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="sidekka_pro_img">
-                        <?php
-                        $img1 = json_decode($product['img_path'])[0];
-                        if ($img1) print("<img class='img-responsive' src=" . ROOT . "/assets/images/product-image/" . $img1 . " alt='product'>");
-                        ?>
-                        </a>
-                        <div class="ec-pro-content">
-                            <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="cart_pro_title">${cart[i].name}</a>
-                            <span class="cart-price"><span>${cart[i].price}</span> x 1</span>
-                            <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1">
-                            <div class="inc ec_qtybtn">+</div></div>
-                            <a href="javascript:void(0)" onclick = "remove()" class="remove">×</a>
-                        </div>
-                    </li>
-                    `)
+                        htmlDiv = htmlDiv.concat(`
+                        <li>
+                            <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="sidekka_pro_img">
+                                <img src="<?php echo ROOT ?>/assets/images/product-image/${cart[i]['img_path'][0]}" alt='product'>
+                            </a>
+                            <div class="ec-pro-content">
+                                <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="cart_pro_title">${cart[i].name}</a>
+                                <span class="cart-price"><span>${cart[i].price}</span> x 1</span>
+                                <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
+                                    <input class="qty-input" type="text" name="ec_qtybtn" value="1">
+                                <div class="inc ec_qtybtn">+</div></div>
+                                <a href="javascript:void(0)" onclick = "remove()" class="remove">×</a>
+                            </div>
+                        </li>
+                
+
+                        `)
+            console.log(cart[i])
+
                 }
-                cartDiv.html(htmlDiv)
-            } else {
-                cartDiv.html(`<li><p class='emp-cart-msg'>Your cart is empty!</p></li>`)
-            }
+
+            cartDiv.html(htmlDiv)
+
+        } else {
+            cartDiv.html(`<li><p class='emp-cart-msg'>Your cart is empty!</p></li>`)
+
         }
+
+        }
+
 
         function remove() {
             var existingItem = JSON.parse(localStorage.getItem("cart"));
@@ -1509,50 +1539,26 @@ if ($products['status'] === true) {
         }
 
         function addToCart(id) {
-            console.log(id)
             $.ajax({
                 url: `<?php echo ROOT ?>/config/core/add-to-cart`,
                 type: "POST",
                 data: {
                     id
                 },
-                success: function(response, textStatus, jqXHR) {
+                success: function(response) {
                     response = JSON.parse(response)
 
                     if (response.status === false) {
-                        $.ajax({
-                            url: `<?php echo ROOT ?>/config/core/get-product`,
-                            type: "POST",
-                            data: {
-                                id
-                            },
-                            success: function(response) {
-                                response = JSON.parse(response)
-                                if (response.status === true) {
-                                    const product = response.data.product
-                                    let cart = JSON.parse(localStorage.getItem('cart')) ?? []
-                                    cart.push(product);
-                                    localStorage.setItem('cart', JSON.stringify(cart))
-                                    // alert("Item added to cart")
-                                    updateCart()
-                                } else {
-                                    alert("There is an error adding this product to cart")
-                                }
-                            },
-                            error: function(errorThrown) {
-                                console.log(errorThrown);
-                            }
-                        });
+                        let cart = JSON.parse(localStorage.getItem('cart')) ?? []
+                        const product = products.filter(p => p.id === id)[0]
+
+                        cart.push(product)
+                        localStorage.setItem('cart', JSON.stringify(cart))
+                        setCart()
                     }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
-                    console.log(textStatus);
-                    console.log(errorThrown);
                 }
             });
         }
-        updateCart()
     </script>
 </body>
 
