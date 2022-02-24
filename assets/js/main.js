@@ -431,6 +431,7 @@ function ecCheckCookie()
             }
 
             var count = $(".cart-count-lable").html();            
+            // count.style.color='red';
             count--;
             $(".cart-count-lable").html(count);
 

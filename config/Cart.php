@@ -2,55 +2,41 @@
 
 class Cart
 {
-    public static function getProducts()
+    public static function getCart()
     {
-        $statement = $GLOBALS['dbh']->prepare("SELECT * FROM product ORDER BY 'id' desc LIMIT 8");
+        $statement = $GLOBALS['dbh']->prepare("SELECT * FROM cart ORDER BY 'id' desc");
         try {
             $statement->execute();
-            if ($statement->rowCount() > 0) {
-                $products = $statement->fetchAll();
+            $cart = $statement->fetchAll();
 
-                return [
-                    "status" => true,
-                    "data" => $products
-                ];
-            } else {
-                return [
-                    "status" => false,
-                    "message" => "No item found"
-                ];
-            };
+            return [
+                "status" => true,
+                "data" => $cart
+            ];
         } catch (PDOException $e) {
             return [
-                'success' => false,
+                'status' => false,
                 'error' => $e->getmessage()
             ];
         }
     }
-
-    public static function getProduct($id)
+    public static function addCart($id)
     {
-        $statement = $GLOBALS['dbh']->prepare("SELECT * FROM product WHERE id = ?");
-        try {
+        $statement = $GLOBALS['dbh']->prepare("SELECT * FROM cart WHERE id = ?");
+        $statement->execute([$id]);
+        $cart  = $statement->fetchAll();
+        return $cart;
+        if ($statement->rowCount() < 0) {
+            $product = Product::getProduct($id);
+            //Item does not exist in the database
+            //Add new item to cart
+            // insert query
+            $statement =  $GLOBALS['dbh']->prepare("INSERT INTO cart");
             $statement->execute([$id]);
-            if ($statement->rowCount() > 0) {
-                $product = $statement->fetch();
-
-                return [
-                    "status" => true,
-                    "data" => $product
-                ];
-            } else {
-                return [
-                    "status" => false,
-                    "message" => "Product not found"
-                ];
-            };
-        } catch (PDOException $e) {
-            return [
-                'success' => false,
-                'error' => $e->getmessage()
-            ];
+            $product = $statement->fetch();
+            return $product;
         }
+        //Item exists in the database, so increase the quantity   
+        // update query     
     }
 }

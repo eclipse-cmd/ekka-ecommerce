@@ -1,5 +1,6 @@
 <?php
 session_start();
+$session_cart = isset($_SESSION['cart']) ? json_decode($_SESSION['cart']) : [];
 define('ROOT', '/ekka-ecommerce');
 define('HOST', 'localhost');
 define('DBUSER', 'root');

@@ -1,4 +1,5 @@
-<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="<?php echo ROOT ?>/assets/js/vendor/jquery-3.5.1.min.js"></script>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="<?php echo ROOT ?>/assets/js/vendor/jquery-3.5.1.min.js"></script>
 <script src="<?php echo ROOT ?>/assets/js/vendor/popper.min.js"></script>
 <script src="<?php echo ROOT ?>/assets/js/vendor/bootstrap.min.js"></script>
 <script src="<?php echo ROOT ?>/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>

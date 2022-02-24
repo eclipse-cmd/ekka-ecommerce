@@ -79,7 +79,7 @@
                         <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                             <div class="header-icon"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg"
                                     class="svg_img header_svg" alt="" /></div>
-                            <span class="ec-header-count cart-count-lable">0</span>
+                            <span class="ec-header-count cart-count-lable"><?php echo count($session_cart) ?></span>
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header menu Start -->
@@ -154,7 +154,7 @@
                             <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                                 <div class="header-icon"><img src="<?php echo ROOT ?>/assets/images/icons/cart.svg"
                                         class="svg_img header_svg" alt="" /></div>
-                                <span class="ec-header-count cart-count-lable">0</span>
+                                <span class="ec-header-count cart-count-lable"><?php echo count($session_cart) ?></span>
                             </a>
                             <!-- Header Cart End -->
                         </div>
@@ -227,3 +227,4 @@
     </div>
     <!-- ekka mobile Menu End -->
 </header>
+

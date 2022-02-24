@@ -1449,7 +1449,10 @@ if ($products['status'] === true) {
                     <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti ec-header-count cart-count-lable">0</span></a>
+                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle">
+                        <img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="icon" />
+                        <span class="ec-cart-noti ec-header-count cart-count-lable"><?php echo count($session_cart) ?></span>
+                    </a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="<?php ROOT ?> index.php" class="ec-header-btn"><img src="assets/images/icons/home.svg" class="svg_img header_svg" alt="icon" /></a>
@@ -1471,6 +1474,7 @@ if ($products['status'] === true) {
     <script>
         setCart()
         var products = [];
+
         (function getProducts() {
             $.ajax({
                 url: `<?php echo ROOT ?>/config/core/get-products`,
@@ -1483,23 +1487,52 @@ if ($products['status'] === true) {
                     }
                 }
             });
-        })()
+        })();
+
+        // get product
+        // function getProduct(id) {
+
+        // }
 
         function getCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) ?? []
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `<?php echo ROOT ?>/config/core/get-cart`,
+                    type: "GET",
+                    success: function(response) {
+                        response = JSON.parse(response)
+                        if (response.status === true) {
+                            const cart = response.data
+                            if (cart.length > 0) {
+                                addCartToStorage(cart)
+                            }
+                            console.log(cart)
+                        }
+                        const cart = JSON.parse(localStorage.getItem('cart')) ?? []
 
-            console.log('Cart: ', cart)
-            console.log("Cart: ", cart instanceof Array)
-            return cart
+                        $.ajax({
+                            url: `<?php echo ROOT ?>/config/core/set-session-cart`,
+                            type: "POST",
+                            data: {
+                                'cart': JSON.stringify(cart)
+                            }
+
+                        });
+
+                        resolve(cart)
+                    }
+                });
+            })
         }
 
         function setCart() {
-            let cart = getCart()
             const cartDiv = $('.eccart-pro-items')
 
-            if (cart.length > 0) {
-                let htmlDiv = ""
-                for (let i = 0; i < cart.length; i++) {
+            getCart().then(cart => {
+
+                if (cart.length > 0) {
+                    let htmlDiv = ""
+                    for (let i = 0; i < cart.length; i++) {
                         htmlDiv = htmlDiv.concat(`
                         <li>
                             <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="sidekka_pro_img">
@@ -1507,27 +1540,22 @@ if ($products['status'] === true) {
                             </a>
                             <div class="ec-pro-content">
                                 <a href="<?php echo ROOT ?>/product/${cart[i].id}/${cart[i].name}" class="cart_pro_title">${cart[i].name}</a>
-                                <span class="cart-price"><span>${cart[i].price}</span> x 1</span>
+                                <span class="cart-price"><span>${cart[i].price}</span> x 100</span>
                                 <div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>
                                     <input class="qty-input" type="text" name="ec_qtybtn" value="1">
                                 <div class="inc ec_qtybtn">+</div></div>
                                 <a href="javascript:void(0)" onclick = "remove()" class="remove">×</a>
                             </div>
                         </li>
-                
-
                         `)
-            console.log(cart[i])
+                        console.log(cart[i])
+                    }
 
+                    cartDiv.html(htmlDiv)
+                } else {
+                    cartDiv.html(`<li><p class='emp-cart-msg'>Your cart is empty!</p></li>`)
                 }
-
-            cartDiv.html(htmlDiv)
-
-        } else {
-            cartDiv.html(`<li><p class='emp-cart-msg'>Your cart is empty!</p></li>`)
-
-        }
-
+            })
         }
 
 
@@ -1538,25 +1566,39 @@ if ($products['status'] === true) {
             localStorage.setItem('cart', JSON.stringify(existingItem));
         }
 
+        //Add to local storage cart
+        function addCartToStorage(cart) {
+            const localCart = JSON.parse(localStorage.getItem('cart')) ?? []
+
+            const newCart = localCart.concat(cart)
+
+            localStorage.setItem('cart', JSON.stringify(newCart))
+        }
+
         function addToCart(id) {
+
             $.ajax({
                 url: `<?php echo ROOT ?>/config/core/add-to-cart`,
                 type: "POST",
                 data: {
                     id
                 },
+
                 success: function(response) {
                     response = JSON.parse(response)
-
+                    console.log(response)
                     if (response.status === false) {
-                        let cart = JSON.parse(localStorage.getItem('cart')) ?? []
                         const product = products.filter(p => p.id === id)[0]
-
-                        cart.push(product)
-                        localStorage.setItem('cart', JSON.stringify(cart))
+                        addCartToStorage(product)
                         setCart()
+                        const overlay = document.querySelector(".ec-side-cart-overlay")
+                        const cartBox = document.querySelector("#ec-side-cart")
+                        overlay.style.display = 'block'
+                        cartBox.classList.add('ec-open')
                     }
+
                 }
+
             });
         }
     </script>
